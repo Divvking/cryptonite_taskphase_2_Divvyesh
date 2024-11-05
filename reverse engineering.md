@@ -147,4 +147,11 @@ main:
     ldr     w0, [sp, 12]         // Load input from [sp, 12] into w0
     sub     w0, w1, w0           // Subtract input from 27, result in w0
     str     w0, [sp, 28]         // Store result at [sp, 28]
+    ldr     w0, [sp, 28]         // Load final result from [sp, 28] into w0
+    add     sp, sp, 32           // deallocates 32 bytes 
+    ret                          // Returns the result in w0
+
 ```
+- Now the result in w0 is checked if it is 0 in main
+- So, the argument should be 27
+- Then, the flag will be picoCTF{0000001b}
