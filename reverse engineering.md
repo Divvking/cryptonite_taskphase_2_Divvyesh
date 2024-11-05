@@ -50,8 +50,7 @@ For what argument does this program print `win` with variables 83, 0 and 3? File
 ## Thought Process
 - Since it is in assembly, I tried `gdb` and `gcc`, thinking it would assist, but it failed.
 - So, i thought i will try out `cat chall_1.S` to read the contents of the file
-```console
-# cat chall_1.S
+```arm
         .arch armv8-a
         .file   "chall_1.c"
         .text
