@@ -155,3 +155,60 @@ main:
 - Now the result in w0 is checked if it is 0 in main
 - So, the argument should be 27
 - Then, the flag will be picoCTF{0000001b}
+# VaultDoor3
+## Problem
+This vault uses for-loops and byte arrays. Program provided is in java
+## Thought Process
+```java
+public boolean checkPassword(String password) {
+        if (password.length() != 32) {
+            return false;
+        }
+        char[] buffer = new char[32];
+        int i;
+        for (i=0; i<8; i++) {
+            buffer[i] = password.charAt(i);
+        }
+        for (; i<16; i++) {
+            buffer[i] = password.charAt(23-i);
+        }
+        for (; i<32; i+=2) {
+            buffer[i] = password.charAt(46-i);
+        }
+        for (i=31; i>=17; i-=2) {
+            buffer[i] = password.charAt(i);
+        }
+        String s = new String(buffer);
+        return s.equals("jU5t_a_sna_3lpm18gb41_u_4_mfr340");
+    }
+```
+- First loop copies into buffer at same indices
+- Second loop essentially reverses indices 8 to 15
+- Third loop takes all even indices from 16 to 30 and replaces them with (46-i)th index
+- Fourth loop fills indices into the places as is, reverse engineering this is very simple and can be done either manually or using a code
+- flag is picoCTF{jU5t_a_s1mpl3_an4gr4m_4_u_1fb380}
+- Since I used manual reverse engineering and found the flag anyways, I decided to try doing it using a code in java as well. Following was my attempt at it:
+```java
+public class PasswordReconstructor {
+    public static void main(String[] args) {
+        String buffer = "jU5t_a_sna_3lpm18gb41_u_4_mfr340";
+        char[] password = new char[32];
+        int i=0;
+        for (; i < 8; i++) {
+            password[i] = buffer.charAt(i);
+        }
+        for (; i < 16; i++) {
+            password[i] = buffer.charAt(23 - i);
+        }
+        for (; i < 32; i += 2) {
+            password[i] = buffer.charAt(46 - i);
+        }
+        for (i = 31; i >= 17; i -= 2) {
+            password[i] = buffer.charAt(i);
+        }
+        String pswd=new String(password);
+        System.out.println("Reconstructed Password: " + pswd);
+        System.out.println("So, the flag is: picoCTF{"+pswd+"}");
+    }
+}
+```
