@@ -212,3 +212,5 @@ public class PasswordReconstructor {
     }
 }
 ```
+Output:
+![image](https://github.com/user-attachments/assets/135b1d17-d1e1-4925-a748-623bf627bbd9)
