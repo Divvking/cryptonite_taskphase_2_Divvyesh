@@ -50,7 +50,7 @@ For what argument does this program print `win` with variables 83, 0 and 3? File
 ## Thought Process
 - Since it is in assembly, I tried `gdb` and `gcc`, thinking it would assist, but it failed.
 - So, i thought i will try out `cat chall_1.S` to read the contents of the file
-```arm
+```s
         .arch armv8-a
         .file   "chall_1.c"
         .text
@@ -132,7 +132,7 @@ main:
 - `main` function takes a command line argument, which gets operated upon in `func`. The win condition is to get 0 as output.
 - from `func`, we get that the function argument is stored in `w0` at `[sp, 12]`, `83` is stored at `[sp, 16]`, `0` (zero register using wzr) is stored at `[sp, 20]` and `3` at `[sp, 24]`
 - coming to the operations side,
-```arm
+```s
     ldr     w0, [sp, 20]         // Load 0 from [sp, 20] into w0
     ldr     w1, [sp, 16]         // Load 83 from [sp, 16] into w1
     lsl     w0, w1, w0           // Left shift 83 by 0 bits, so w0 remains 83
