@@ -21,7 +21,26 @@ Can you figure out what is in the eax register at the end of the main function? 
   14. disassemble function: Disassemble the code of a function
   15. disassemble/r function: Disassemble the code of a function with raw opcodes
 - To start solving, I first checked the permissions of the file and tried running it.
-- ```root@LAPTOP-D1CLF8OQ:/mnt/c/Users/Divvyesh/Downloads# ls -la debugger0_a
+```
+# ls -la debugger0_a
 -rwxrwxrwx 1 root root 16472 Nov  5 10:50 debugger0_a
-root@LAPTOP-D1CLF8OQ:/mnt/c/Users/Divvyesh/Downloads# ./debugger0_a```
-- 
+# ./debugger0_a
+```
+- Since nothing seemed to happen, I ran `gdb debugger0_a`
+- since we need the `eax` register at the end of `main`, i tried to run `disassemble main`
+```
+(gdb) disassemble main
+Dump of assembler code for function main:
+   0x0000000000001129 <+0>:     endbr64
+   0x000000000000112d <+4>:     push   %rbp
+   0x000000000000112e <+5>:     mov    %rsp,%rbp
+   0x0000000000001131 <+8>:     mov    %edi,-0x4(%rbp)
+   0x0000000000001134 <+11>:    mov    %rsi,-0x10(%rbp)
+   0x0000000000001138 <+15>:    mov    $0x86342,%eax
+   0x000000000000113d <+20>:    pop    %rbp
+   0x000000000000113e <+21>:    ret
+End of assembler dump.
+```
+- We found `0x86342` in the register
+- We convert it to int and find `549698`
+- so the picoCTF flag is : `picoCTF{549698}`
