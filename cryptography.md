@@ -210,4 +210,55 @@ plain is: }b5eebf94_d6tp0rc2d_motsuc{FTCocip
 - flag: picoCTF{custom_d2cr0pt6d_49fbee5b}
 # miniRSA
 ## Problem
-🚧**WIP**🚧
+- We have a ciphertext file, and the problem name suggests the use of RSA
+## Thought Process
+- RSA is a public key cryptosystem, meaning that messages are encrypted with a public key that is known to everyone and decrypted using a private key known only to the receiver. This private key and public key are generated ahead of time. The generation uses primes, since the time needed to factorize a large number into its prime factors is infeasibly high for large numbers and large primes.
+- reading the file, we have
+```
+N: 29331922499794985782735976045591164936683059380558950386560160105740343201513369939006307531165922708949619162698623675349030430859547825708994708321803705309459438099340427770580064400911431856656901982789948285309956111848686906152664473350940486507451771223435835260168971210087470894448460745593956840586530527915802541450092946574694809584880896601317519794442862977471129319781313161842056501715040555964011899589002863730868679527184420789010551475067862907739054966183120621407246398518098981106431219207697870293412176440482900183550467375190239898455201170831410460483829448603477361305838743852756938687673
+e: 3
+
+ciphertext (c): 2205316413931134031074603746928247799030155221252519872650080519263755075355825243327515211479747536697517688468095325517209911688684309894900992899707504087647575997847717180766377832435022794675332132906451858990782325436498952049751141
+```
+- `N=p*q` where p and q are prime numbers
+- `totient(n) = (p - 1) * (q - 1)`
+- Pick an `e` between 1 and `totient(n)` so that totient(n) and e share no common factors. e is often `65537` due to its efficiency. This, in combination with n, is the public key.
+- To decrypt a message c, find pow(c,d,n).
+- Since the exponent is small, plaintext m is small enough that `m^e<N`
+- ciphertext c's cube root will simply give the plaintext
+- attempting to find cuberoot with maximum accuracy using binary search
+```python
+def find_invpow(x,n):
+    """Finds the integer component of the n'th root of x,
+    an integer such that y ** n <= x < (y + 1) ** n.
+    """
+    high = 1
+    while high ** n < x:
+        high *= 2
+    low = high/2
+    while low < high:
+        mid = (low + high) // 2
+        if low < mid and mid**n < x:
+            low = mid
+        elif high > mid and mid**n > x:
+            high = mid
+        else:
+            return mid
+    return mid + 1
+print (find_invpow(2205316413931134031074603746928247799030155221252519872650080519263755075355825243327515211479747536697517688468095325517209911688684309894900992899707504087647575997847717180766377832435022794675332132906451858990782325436498952049751141,3))
+```
+result: `Plaintext (m): 13016382529449106065894479374027604750406953699090365388203722801043052339225981`
+- converting to hex then ascii
+```python
+def number_to_ascii(number):
+    hex_representation = hex(number)[2:]  # Convert to hex and remove '0x'
+    if len(hex_representation) % 2 != 0:
+        hex_representation = '0' + hex_representation
+    return bytes.fromhex(hex_representation).decode('utf-8', errors='ignore')
+m = 13016382529449106065894479374027604750406953699090365388203722801043052339225981
+
+# Decode the plaintext to ASCII
+plaintext_message = number_to_ascii(m)
+print(f"Decoded Plaintext: {plaintext_message}")
+```
+- flag is `picoCTF{n33d_a_lArg3r_e_d0cd6eae}`
