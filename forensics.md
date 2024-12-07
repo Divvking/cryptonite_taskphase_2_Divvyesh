@@ -33,5 +33,5 @@ steghide extract -sf picture3.bmp -p DUEDILIGENCE
 - Saving it as a `.bmp` file, expecting it to be openable now.
 - Of course, it still cannot be opened. Probably contains further corruption in the file header.
 - `BA D0` is probably the corrupted hex.
-WIP 
+- Seeing as the number of bytes in the DIB header are wrong and the number of bits per pixel are also wrong we realize we need to edit the bytes at offset 0x0e and 0x1c. 
   
