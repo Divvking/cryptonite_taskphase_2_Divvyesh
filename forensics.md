@@ -22,5 +22,16 @@ steghide extract -sf picture3.bmp -p DUEDILIGENCE
 - ![image](https://github.com/user-attachments/assets/2689bb0c-c813-4618-ac49-57c3057f7d7e)
 - Time to read the flag.
 - Flag: `picoCTF{h1dd3n_1n_pLa1n_51GHT_18375919}`
-
+# Tunn3l V1s10n
+## Problem
+- We found this file. Recover the flag.
+## Thought Process
+- Tried opening the file, big mistake, crashed my WSL.
+- Opened it with a hex editor
+![image](https://github.com/user-attachments/assets/fdda6f81-f30f-418d-ae57-48b7b0fb326f)
+- BM suggests that it is a bitmap file
+- Saving it as a `.bmp` file, expecting it to be openable now.
+- Of course, it still cannot be opened. Probably contains further corruption in the file header.
+- `BA D0` is probably the corrupted hex.
+WIP 
   
