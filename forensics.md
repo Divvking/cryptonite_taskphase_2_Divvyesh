@@ -33,5 +33,11 @@ steghide extract -sf picture3.bmp -p DUEDILIGENCE
 - Saving it as a `.bmp` file, expecting it to be openable now.
 - Of course, it still cannot be opened. Probably contains further corruption in the file header.
 - `BA D0` is probably the corrupted hex.
-- Seeing as the number of bytes in the DIB header are wrong and the number of bits per pixel are also wrong we realize we need to edit the bytes at offset 0x0e and 0x1c. 
+- `0x0a` is the offset, i.e. starting address, of the byte where the bitmap image data (pixel array) can be found.
+- Using the most common DIB header, which is BITMAPINFOHEADER, it extends width and height by 4 bytes.
+- adding the sizes, we get 56 or 38 in hex. Substitute the value, and at 0e, put the size of the header.
+![image](https://github.com/user-attachments/assets/8bbfa94a-ca28-4332-9514-6b07191295cf)
+- lets try setting height to same as the width,
+
+
   
