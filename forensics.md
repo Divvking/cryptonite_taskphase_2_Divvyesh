@@ -37,7 +37,22 @@ steghide extract -sf picture3.bmp -p DUEDILIGENCE
 - Using the most common DIB header, which is BITMAPINFOHEADER, it extends width and height by 4 bytes.
 - adding the sizes, we get 56 or 38 in hex. Substitute the value, and at 0e, put the size of the header.
 ![image](https://github.com/user-attachments/assets/8bbfa94a-ca28-4332-9514-6b07191295cf)
-- lets try setting height to same as the width,
-
+- lets try setting height to same as the width, at the position according to the wikipedia.
+![image](https://github.com/user-attachments/assets/b1bfd00e-ad90-4def-9dfe-d4f248e19c23)
+![image](https://github.com/user-attachments/assets/91e258c1-4a50-459e-8224-9d8a765c0339)
+flag: `picoCTF{qu1t3_a_v13w_2020}`
+# m00nwalk
+## Problem
+Decode this message from the moon.
+## Thought Process
+- Cool, so we have an audio consisting of some encrypted name. Visualising and all doesn't work. Using the name of the level and the hint with some research, we discover that it uses SSTV. SSTV stands for slow-scan television, a method for transmitting and receiving static pictures over radio waves. It's primarily used by amateur radio operators to share images in monochrome or color.
+- https://github.com/colaclanth/sstv using this decoder
+- the 2nd hint suggests the use of Scottie RX option, as the Carnegie-Mellon University mascot is Scotty, the Scottie dog.
+```console
+sstv -d message.wav -o result.png
+```
+![image](https://github.com/user-attachments/assets/d20bd2bb-e97e-4b3a-afb1-9ed5f1ad5b59)
+![image](https://github.com/user-attachments/assets/6c1df230-8933-43f7-9896-0706331e9072)
+flag: `picoCTF{beep_boop_im_in_space}`
 
   
