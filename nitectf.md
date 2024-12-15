@@ -12,3 +12,15 @@
 - Opening the commit history, we obtain a poem inside `Whispers of the forgotten` and a key in `Code of decay`
 https://github.com/freakada-3301/Salvation-in-Decay/commit/8951d1e8fc35e2a4845ee8a740ac343ce85420ee
 https://github.com/freakada-3301/Salvation-in-Decay/commit/618ff2a8e6a8b724ad2ad909c52ed7bd798ee6b0
+- The code is in `line:word:character` format. Taking the corresponding characters, we get a link to a discord server : `https://discord.gg/AHj7R2Qd`
+![image](https://github.com/user-attachments/assets/092cd6ad-ecf9-4ac3-94cd-ce8fce0614a5)
+- Nice bait, all it does is add to the gen alpha humour by playing KSI's classic `Thick of It ft. Trippie Redd`. There's a freakada bot which we are supposed to dm.
+![image](https://github.com/user-attachments/assets/0f90cf7b-2314-45b0-b794-e25d4ad2a7e1)
+- Tried a bunch of brainrot DMs to the bot, which resulted in the bot responding `INCORRECT`
+- Then I decided to message 3301, which is a prime number (this was random DM luck, I realised the reason only later).
+![image](https://github.com/user-attachments/assets/6e620409-f996-4ad8-b6c1-9b955046032a)
+- x and y are the dimensions of the original image, so `3301*449*503` i.e. `745520947`
+![image](https://github.com/user-attachments/assets/f9024062-f02d-4bc1-bcb3-ebd81dcc68c0)
+- The coordinates lead to a location called `Freaky Backshots Cliff`!?!?! On the Manipal Institute of Technology campus. Going to the Google images provides a picture of a freakada 3301 poster with a QR Code on it. It leads to a protondrive containing a `.wav` file. Using a spectrogram, we obtain the first part of the flag `nite{4_wannabe_` and some morse
+- `.._. ._. . . _._ . _.__` is the morse which translates to `FREEKEY`, using it as a key for the 2nd part of the flag
+flag: `nite{4_wannabe_1nt3rn3t_my5tery}`
