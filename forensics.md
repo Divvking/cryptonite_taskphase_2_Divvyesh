@@ -163,9 +163,15 @@ Modify Date                     : 1970:01:01 00:00:00.703
 - To change the Samsung TimeStamp, we need to modify the epoch of the file
 - It is stored following the `Image_UTC_Data`.
 ![image](https://github.com/user-attachments/assets/61b95c67-99f2-4a23-b9dd-271d3e11b635)
-- Using an online converter such as `https://www.epochconverter.com`, we get to know that the last 3 figures are the milliseconds, so we need to set the epoch to all zeros with a singular 1 at the end.
+- Using an online converter such as `https://www.epochconverter.com`, we get to ip.src == 172.16.0.2know that the last 3 figures are the milliseconds, so we need to set the epoch to all zeros with a singular 1 at the end.
 ![image](https://github.com/user-attachments/assets/9e28def1-347f-41ce-83f4-80dd84fdb449)
 - I am going to use `bvi` to do this
 ![image](https://github.com/user-attachments/assets/22fed445-0ab3-462c-8048-dc12f4cc3554)
 flag: `picoCTF{71m3_7r4v311ng_p1c7ur3_83ecb41c}`
-
+# PcapPoisoning
+## Thought Process
+- Opened the file using WireShark, scrolled through the packets.
+- Packet no. `5` contained the message `Flag is close`
+- I scrolled down and found the packet in `507`. It was the first packet coloured in black with info mentioning `TCP Retransmission`.
+![image](https://github.com/user-attachments/assets/79df4d29-721d-4762-80d8-9daed8c5f28e)
+- flag: `picoCTF{P64P_4N4L7S1S_SU55355FUL_f621fa37}`
