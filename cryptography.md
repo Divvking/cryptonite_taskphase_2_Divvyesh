@@ -262,3 +262,10 @@ plaintext_message = number_to_ascii(m)
 print(f"Decoded Plaintext: {plaintext_message}")
 ```
 - flag is `picoCTF{n33d_a_lArg3r_e_d0cd6eae}`
+# HideToSee
+## Problem
+- We have a file given, which is named `atbash.jpg`, uploading the file on [this website](aperisolve.com), we observe a steghide usage.
+![image](https://github.com/user-attachments/assets/b12728a3-d778-448b-8abd-274179faf852)
+- Extracting the steghide, we get `krxlXGU{zgyzhs_xizxp_7142uwv9}` inside a file
+- Now, we can use the Atbash Cipher on it to obtain the flag
+flag: `picoCTF{atbash_crack_7142fde9}`
